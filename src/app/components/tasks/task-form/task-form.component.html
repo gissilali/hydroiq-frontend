@@ -1,29 +1,40 @@
 <form (ngSubmit)="submitForm()">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add User</h4>
+    <h4 class="modal-title" id="modal-basic-title">Add Task</h4>
     <button (click)="modalService.close()" type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-
     <div class="form-group">
       <label for="name">Name</label>
       <input id="name" [(ngModel)]="formData.name" class="form-control" name="name">
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" [(ngModel)]="formData.email" class="form-control" name="email">
+      <label for="description">Description</label>
+      <textarea id="description" [(ngModel)]="formData.description" class="form-control" name="description"></textarea>
     </div>
     <div class="form-group">
-      <label for="dateOfBirth">Date of birth</label>
+      <label for="dateOfBirth">Due date</label>
       <div class="input-group">
-        <input [(ngModel)]="formData.date_of_birth" id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
+        <input [(ngModel)]="formData.due_date" id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd"
                ngbDatepicker #dp="ngbDatepicker">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <label for="assigned_users">Assigned Users</label>
+      <ng-multiselect-dropdown
+        [placeholder]="'custom placeholder'"
+        [data]="usersService.users"
+        [(ngModel)]="selectedItems"
+        [settings]="dropdownSettings"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)"
+      >
+      </ng-multiselect-dropdown>
     </div>
 
   </div>

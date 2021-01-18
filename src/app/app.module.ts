@@ -13,6 +13,9 @@ import { TasksPageComponent } from './pages/tasks-page/tasks-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UserFormModalComponent } from './components/users/user-form-modal/user-form-modal.component';
 import {AuthTokenInterceptor} from './auth-token.interceptor';
+import { TaskFormComponent } from './components/tasks/task-form/task-form.component';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import { TaskViewPageComponent } from './pages/task-view-page/task-view-page.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import {AuthTokenInterceptor} from './auth-token.interceptor';
     TasksPageComponent,
     UsersPageComponent,
     UserFormModalComponent,
+    TaskFormComponent,
+    TaskViewPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true}],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {TasksPageComponent} from './pages/tasks-page/tasks-page.component';
 import {UsersPageComponent} from './pages/users-page/users-page.component';
+import {TaskViewPageComponent} from './pages/task-view-page/task-view-page.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'tasks', component: TasksPageComponent},
+      {path: 'tasks/:id', component: TaskViewPageComponent},
       {path: 'users', component: UsersPageComponent }
     ]
   }

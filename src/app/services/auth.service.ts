@@ -31,7 +31,7 @@ export class AuthService {
         (result: any) => {
           localStorage.setItem('access_token', result.tokens.access_token)
           localStorage.setItem('current_user', JSON.stringify(result.user))
-          this.router.navigate(['']);
+          this.router.navigate(['/users']);
         },
         ({error, status}) => {
           console.log({error})

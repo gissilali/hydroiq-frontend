@@ -1,0 +1,29 @@
+<div class="py-4">
+  <h4>{{ tasksService.currentTask.name }} <small>due on {{tasksService.currentTask.due_date}}</small></h4>
+  <p>{{ tasksService.currentTask.description }}</p>
+</div>
+<div class="card">
+  <div class="card-inner">
+    <h6>Users assigned to this task</h6>
+    <div class="nk-tb-list nk-tb-ulist">
+      <div class="nk-tb-item nk-tb-head">
+        <div class="nk-tb-col"><span class="sub-text">User</span></div>
+        <div class="nk-tb-col tb-col-mb"><span class="sub-text">Email</span></div>
+        <div class="nk-tb-col tb-col-md"><span class="sub-text">Date of Birth</span></div>
+        <div class="nk-tb-col tb-col-lg text-right"><span class="sub-text">Tasks Assigned</span></div>
+      </div>
+      <div class="nk-tb-item" *ngFor="let user of tasksService.currentTask.assigned_users">
+        <div class="nk-tb-col"><a href="/demo3/user-details-regular.html">
+          <div class="user-card">
+            <div class="user-avatar bg-primary"><span>{{ user.name[0]}}</span></div>
+            <div class="user-info"><span class="tb-lead">{{ user.name }} <span class="dot dot-success d-md-none ml-1"></span></span>
+            </div>
+          </div>
+        </a></div>
+        <div class="nk-tb-col tb-col-mb"><span>{{ user.email }}</span></div>
+        <div class="nk-tb-col tb-col-lg"><span>{{ user.date_of_birth }}</span></div>
+        <div class="nk-tb-col tb-col-md text-right"><span class="text-right">{{ user.tasks_assigned }}</span></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,14 +10,14 @@ import {UsersService} from '../../../services/users.service';
   styleUrls: ['./user-form-modal.component.css']
 })
 export class UserFormModalComponent implements OnInit {
-  @Output() valueChange = new EventEmitter<any>()
+  @Output() valueChange = new EventEmitter<any>();
   formData: any = {
     name: '',
     email: '',
     date_of_birth: ''
-  }
+  };
 
-  constructor(public modalService: NgbActiveModal, private http : HttpClient, private usersService : UsersService) {
+  constructor(public modalService: NgbActiveModal, private http: HttpClient, private usersService: UsersService) {
 
   }
 
@@ -25,20 +25,21 @@ export class UserFormModalComponent implements OnInit {
   }
 
   submitForm() {
-    let year = this.formData.date_of_birth.year
-    let month = this.formData.date_of_birth.month
-    let day = this.formData.date_of_birth.day
-    this.formData.date_of_birth = `${year}-${month}-${day}`
+    let year = this.formData.date_of_birth.year;
+    let month = this.formData.date_of_birth.month;
+    let day = this.formData.date_of_birth.day;
+    this.formData.date_of_birth = `${year}-${month}-${day}`;
     this.http.post(`${environment.API_BASE_URL}/users/add`, this.formData)
       .subscribe(
         (response: any) => {
-            const {user, message} = response
-            this.usersService.users.push(user)
+          const {data, message} = response;
+          this.usersService.users.unshift(data);
+          this.modalService.close();
         },
         error => {
 
         }
-      )
+      );
   }
 
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {UserFormModalComponent} from '../../components/users/user-form-modal/user-form-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {TasksService} from '../../services/tasks.service';
+import {TaskFormComponent} from '../../components/tasks/task-form/task-form.component';
 
 @Component({
   selector: 'app-tasks-page',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasksPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public tasksService : TasksService , private modalService : NgbModal) { }
 
   ngOnInit(): void {
+    this.tasksService.getTasks()
   }
 
+  open() {
+    let ref = this.modalService.open(TaskFormComponent)
+  }
 }

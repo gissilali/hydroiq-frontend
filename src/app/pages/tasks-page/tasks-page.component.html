@@ -1,1 +1,40 @@
-<p>tasks-page works!</p>
+<div class="div py-4">
+  <div class="d-flex py-2 justify-between items-center">
+    <h4 class="mb-3">Tasks</h4>
+    <button class="btn btn-primary" (click)="open()">add task</button>
+  </div>
+  <hr>
+  <div class="row">
+      <div class="col-md-6" *ngFor="let task of tasksService.tasks">
+        <a routerLink="{{ '/tasks/' + task.id }}" class="card clearfix shadow-sm card-body mb-4"
+             style="border-top: 4px solid rgb(113, 128, 150);">
+          <div class="card-title-group align-start mb-3">
+            <div class="card-title"><h6 class="title">{{ task.name }}</h6>
+              <p>
+                {{ task.description }}
+              </p>
+            </div>
+            <div class="card-tools mt-n1 mr-n1">
+              <div class="dropdown "><a data-toggle="dropdown" href="#"
+                                        class="btn btn-sm btn-icon btn-trigger dropdown-toggle"><em
+                class="icon ni ni-more-h"></em></a>
+                <div class="dropdown-menu dropdown-menu-sm  dropdown-menu-right">
+                  <ul class="link-list-opt no-bdr">
+                    <li><a
+                      href="https://erm.mahida-maina.com/tasks/bank-of-india-nairobi-internal-documents-stamping?filter[project]=vaB9NbxoVwWPnpK6kVbAk2EAydleQR35r7m1"><span
+                    >View</span></a> <a
+                      href="https://erm.mahida-maina.com/projects/vaB9NbxoVwWPnpK6kVbAk2EAydleQR35r7m1/edit"><span
+                    >Edit</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="font-weight-bold">assigned to {{ task.assigned_users.length }} users</p>
+          </div>
+        </a>
+      </div>
+  </div>
+</div>
+
