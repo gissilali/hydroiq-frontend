@@ -7,14 +7,17 @@ import {environment} from '../../../setenv';
   providedIn: 'root'
 })
 export class UsersService {
+  users: User[]
 
   constructor(private http : HttpClient) { }
 
   getUsers()  {
     this.http.get(`${environment.API_BASE_URL}/users`)
       .subscribe(
-        response => {
-            console.log({response})
+        (response : any) => {
+          const { data } = response
+          console.log({data});
+          this.users = data
         },
         error => {
 

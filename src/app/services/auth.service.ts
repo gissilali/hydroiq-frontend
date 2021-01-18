@@ -53,4 +53,10 @@ export class AuthService {
     }
     return true;
   }
+
+  logout() {
+    this.router.navigate(['/login'])
+    localStorage.setItem('access_token', null)
+    localStorage.setItem('current_user', null);
+  }
 }

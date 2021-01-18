@@ -11,18 +11,15 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersPageComponent implements OnInit {
   users : User[]
-  constructor(private usersService : UsersService, private modalService : NgbModal) { }
+  constructor(public usersService : UsersService, private modalService : NgbModal) {
+    this.users = [];
+  }
 
   ngOnInit(): void {
-    this.users = this.usersService.getUsers();
-    console.log(this.users);
+    this.usersService.getUsers();
   }
 
   open() {
     let ref = this.modalService.open(UserFormModalComponent)
-  }
-
-  updateUserList() {
-
   }
 }

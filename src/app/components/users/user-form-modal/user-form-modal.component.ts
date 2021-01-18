@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../setenv';
+import {UsersService} from '../../../services/users.service';
 
 @Component({
   selector: 'app-user-form-modal',
@@ -16,7 +17,7 @@ export class UserFormModalComponent implements OnInit {
     date_of_birth: ''
   }
 
-  constructor(public modalService: NgbActiveModal, private http : HttpClient) {
+  constructor(public modalService: NgbActiveModal, private http : HttpClient, private usersService : UsersService) {
 
   }
 
@@ -32,7 +33,7 @@ export class UserFormModalComponent implements OnInit {
       .subscribe(
         (response: any) => {
             const {user, message} = response
-            this.valueChange.emit(user)
+            this.usersService.users.push(user)
         },
         error => {
 
